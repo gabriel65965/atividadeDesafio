@@ -1,0 +1,26 @@
+{
+  "name": "estoque-eventos",
+  "version": "1.0.0",
+  "description": "API de estoque (produtor) + workers de auditoria, compras e vitrine (consumidores) via RabbitMQ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "worker:auditoria": "node workers/auditoria.js",
+    "worker:compras": "node workers/compras.js",
+    "worker:vitrine": "node workers/vitrine.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.2",
+    "amqplib": "^2.4.0",
+    "dotenv": "^18.0.10",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

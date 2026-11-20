@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Estoque - Movimentacao e Eventos (RabbitMQ)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" }
+  ],
+  "item": [
+    {
+      "name": "1 - Listar produtos",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/produtos"
+      }
+    },
+    {
+      "name": "2 - Buscar produto de teste (ID 2001)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/produtos/2001"
+      }
+    },
+    {
+      "name": "3 - Cadastrar produto",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Mouse Gamer\",\n  \"preco\": 150,\n  \"estoque\": 10,\n  \"estoque_minimo\": 5\n}"
+        },
+        "url": "{{baseUrl}}/produtos"
+      }
+    },
+    {
+      "name": "4 - Venda / Saida de estoque (clicar 2x na Prova de Resiliencia)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tipo\": \"SAIDA\",\n  \"quantidade\": 2\n}"
+        },
+        "url": "{{baseUrl}}/produtos/2001/movimentar"
+      }
+    },
+    {
+      "name": "5 - Zerar estoque (testar Vitrine -> disponivel = false)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tipo\": \"SAIDA\",\n  \"quantidade\": 3\n}"
+        },
+        "url": "{{baseUrl}}/produtos/2001/movimentar"
+      }
+    },
+    {
+      "name": "6 - Entrada / Reposicao de estoque (testar Vitrine -> disponivel = true)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tipo\": \"ENTRADA\",\n  \"quantidade\": 7\n}"
+        },
+        "url": "{{baseUrl}}/produtos/2001/movimentar"
+      }
+    }
+  ]
+}
